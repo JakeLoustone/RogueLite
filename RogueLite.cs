@@ -1,4 +1,4 @@
-﻿using Oxide.Core;
+using Oxide.Core;
 using Oxide.Game.Rust.Libraries;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Oxide.Plugins
 {
-    [Info("Rogue Lite", "JakeLoustone", "0.0.7")]
+    [Info("Rogue Lite", "JakeLoustone", "0.0.8")]
     [Description("Rogue Lite is a plugin that kicks and prevents players rejoining if they have no lives left.")]
     class RogueLite : RustPlugin
     {
@@ -226,8 +226,6 @@ namespace Oxide.Plugins
 
         private void ClearDeaths()
         {
-            LoadPlayerDeathsDictionary();
-
             string[] filesToDeleteArray = Interface.Oxide.DataFileSystem.GetFiles("RogueLite/");
 
             foreach (string fileString in filesToDeleteArray)
@@ -236,6 +234,8 @@ namespace Oxide.Plugins
 
                 Interface.Oxide.DataFileSystem.WriteObject(tmpString, 0);
             }
+			
+            LoadPlayerDeathsDictionary();
         }
         #endregion
 
